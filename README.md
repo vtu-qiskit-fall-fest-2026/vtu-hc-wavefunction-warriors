@@ -1,312 +1,181 @@
-<div align="center">
+# QuantumSafe-Checker
+### Quantum-Safe Cryptographic Risk Assessment and Migration Planning
 
-# Wavefunction Warriors
-
-**VTU-QFF-HC-0136** &nbsp;|&nbsp; Tier: **Online**
-
-</div>
-
----
-
-<div align="center">
-
-| | |
-| :--- | :--- |
-| **Team** | Wavefunction Warriors |
-| **Team ID** | VTU-QFF-HC-0136 |
-| **Tier** | Online |
-| **Repository** | [vtu-hc-wavefunction-warriors](https://github.com/vtu-qiskit-fall-fest-2026/vtu-hc-wavefunction-warriors.git) |
-| **Organisation** | [vtu-qiskit-fall-fest-2026](https://github.com/vtu-qiskit-fall-fest-2026) |
-| **Event** | VTU-QFF Hackathon — VTU-Qiskit Fall Fest 2026 |
-
-</div>
+**Team:** Wavefunction Warriors  
+**Team ID:** VTU-QFF-HC-0136  
+**Track:** Quantum Cryptography and Security  
+**Institution:** Thiagarajar College of Engineering, Madurai, India  
+**Team Leader:** R. Rakchana  
+**Team Members:** R. Rakchana, M. S. Sethulatha, K. Rithanyaa
 
 ---
 
-## 📌 Table of Contents
+## 1. Problem Statement
 
-- [Team Members](#-team-members-github-ids)
-- [Problem Statement](#-problem-statement)
-- [Proposed Solution](#-proposed-solution)
-- [Approach & Architecture](#-approach--architecture)
-- [Tech Stack](#-tech-stack)
-- [Project Structure](#-project-structure)
-- [How to Run](#-how-to-run)
-- [How to Push Code](#-how-to-push-code)
-- [Submission Checklist](#-submission-checklist)
-- [Resources](#-resources)
-- [License](#-license)
+Quantum computing may threaten widely used public-key cryptographic algorithms, particularly RSA and elliptic-curve cryptography, when sufficiently capable fault-tolerant quantum computers become available. Organizations often lack a centralized view of the cryptographic algorithms used across their systems, making it difficult to identify vulnerable assets and plan migration to post-quantum cryptography (PQC).
 
----
+QuantumSafe-Checker addresses this challenge by providing a prototype for cryptographic risk assessment, asset inventory analysis, and post-quantum migration planning.
 
-## 👥 Team Members (GitHub IDs)
+## 2. Proposed Solution
 
-> Members are added to this repository as **collaborators** and must accept the
-> GitHub invitation before they can push. Add your GitHub username below.
+QuantumSafe-Checker helps users assess cryptographic configurations and understand potential quantum-related risks. It provides qualitative risk explanations and migration recommendations for supported algorithm and use-case combinations.
 
-| # | Name | GitHub Username | Role |
-| :-- | :--- | :--- | :--- |
-| 1 | _Add your name_ | _your-github-username_ | _Team Lead_ |
-| 2 | _Add your name_ | _your-github-username_ | _Developer_ |
-| 3 | _Add your name_ | _your-github-username_ | _Developer_ |
+The prototype also supports CSV-based cryptographic asset inventory assessment, enabling users to review multiple assets in a consolidated view.
 
-<!--
-Optional: add a plain list instead of the table above.
-- @username1
-- @username2
--->
+### Key Features
 
----
+- **Cryptographic Security Checker:** Assess supported cryptographic algorithms and use cases.
+- **Risk Explanations:** Present qualitative findings and explain potential quantum-related vulnerabilities.
+- **Migration Recommendations:** Suggest relevant post-quantum cryptographic alternatives for supported configurations.
+- **Asset Inventory:** Import a CSV file containing multiple cryptographic assets for assessment.
+- **Consolidated Results:** Review algorithm assessments and inventory findings in one interface.
+- **Report Export:** Export assessment results for further review and planning.
 
-## ❓ Problem Statement
+## 3. System Architecture
 
-<!--
-State the problem you are solving. Be specific: what is broken or missing,
-who experiences it, and why does it matter. Link to the official problem
-statement from the brief if one applies.
--->
+The application uses a frontend-backend architecture.
 
-**Problem:** _Describe the problem in 2–3 sentences._
+1. **Frontend:** React, TypeScript, and Vite provide the user interface.
+2. **Backend API:** Python and FastAPI handle assessment requests and application logic.
+3. **Security Rules Engine:** Python-based rules evaluate supported algorithm and use-case combinations.
+4. **Algorithm Metadata:** JSON data provides algorithm information used by the assessment engine.
+5. **Inventory and Reporting:** Python modules process asset inventory data and prepare assessment reports.
 
-**Why it matters:** _Explain the impact or opportunity._
+### Technology Stack
 
-**Track / Category:** _Online / Offline · Track 1 / Track 2 · <domain>_
+| Component | Technologies |
+|---|---|
+| Frontend | React, TypeScript, Vite |
+| Backend | Python, FastAPI, Uvicorn |
+| Validation | Pydantic |
+| Data Processing | Pandas |
+| Configuration | JSON |
+| Version Control | Git and GitHub |
 
----
+## 4. How It Works
 
-## 💡 Proposed Solution
+1. The user selects a cryptographic algorithm and its intended use case.
+2. The frontend sends the assessment request to the backend API.
+3. The rules engine evaluates the supported configuration.
+4. The application displays the qualitative risk assessment and relevant migration guidance.
+5. Alternatively, the user uploads a CSV cryptographic asset inventory to assess multiple entries.
+6. The user reviews the results and exports the report when needed.
 
-<!--
-Describe your solution. Keep it concrete: the core idea, the user flow, and
-the quantum/ML technique you are applying.
--->
-
-**Solution:** _In 2–3 sentences, describe what you built._
-
-**Key idea:** _The one-line technical summary of your approach._
-
-**Why this works:** _How your approach addresses the problem statement._
-
----
-
-## 🧩 Approach & Architecture
-
-<!--
-Walk through how it works. A simple pipeline diagram in text or Mermaid is ideal.
--->
-
-```mermaid
-flowchart LR
-    A[Input Data] --> B[Preprocessing]
-    B --> C[Quantum Circuit / Model]
-    C --> D[Post-processing]
-    D --> E[Output]
-```
-
-1. **Input** — _what data goes in and in what format_
-2. **Preprocessing** — _cleaning, feature extraction, encoding_
-3. **Quantum core** — _the circuit, ansatz, or algorithm used_
-4. **Post-processing** — _decoding, measurement, scoring_
-5. **Output** — _what the user finally gets_
-
----
-
-## 🛠️ Tech Stack
-
-| Layer | Technology |
-| :--- | :--- |
-| Language | Python 3.11+ |
-| Quantum SDK | Qiskit `>=1.0`, Qiskit Aer, Qiskit Runtime |
-| Optimisation | Qiskit Optimization / COBYLA / SPSA |
-| Simulation | AerSimulator (statevector / noisemodel) |
-| Environment | JupyterLab / VS Code, `venv` |
-| Version control | Git + GitHub |
-
----
-
-## 📁 Project Structure
-
-```text
-vtu-hc-wavefunction-warriors/
-├── README.md              # This file
-├── requirements.txt       # Python dependencies
-├── pyproject.toml         # Project metadata (optional)
-├── .gitignore
-├── notebooks/             # Jupyter notebooks for experiments
-│   └── exploration.ipynb
-├── src/
-│   ├── __init__.py
-│   ├── circuit.py         # Quantum circuit construction
-│   ├── optimizer.py       # Optimization loop
-│   └── main.py            # Entry point
-├── data/                  # Datasets (use Git LFS for large files)
-├── tests/                 # Unit tests
-│   └── test_circuit.py
-└── docs/                  # Notes, diagrams, reports
-```
-
----
-
-## 🚀 How to Run
+## 5. Installation and Setup
 
 ### Prerequisites
 
-- Python 3.11 or newer
-- [Git](https://git-scm.com/downloads)
-- A GitHub account (you need collaborator access to this repo)
+- Python 3.10 or later
+- Node.js and npm
+- Git
 
-### 1. Clone the repository
+### Clone the Repository
 
 ```bash
 git clone https://github.com/vtu-qiskit-fall-fest-2026/vtu-hc-wavefunction-warriors.git
 cd vtu-hc-wavefunction-warriors
 ```
 
-### 2. Create a virtual environment
+### Backend Setup
+
+From the repository root:
 
 ```bash
-python3 -m venv .venv
-source .venv/bin/activate        # Linux / macOS
-# .venv\Scripts\activate         # Windows (PowerShell)
+python -m venv .venv
 ```
 
-### 3. Install dependencies
+Activate the virtual environment on Windows:
+
+```powershell
+.\.venv\Scripts\Activate.ps1
+```
+
+Install dependencies:
 
 ```bash
-pip install --upgrade pip
 pip install -r requirements.txt
 ```
 
-### 4. Run
+Start the backend:
 
 ```bash
-python -m src.main
+python -m uvicorn backend.app:app --host 127.0.0.1 --port 8003
 ```
 
-Or launch the notebook workflow:
+The backend will be available at:
+
+`http://127.0.0.1:8003`
+
+API health endpoint:
+
+`http://127.0.0.1:8003/api/health`
+
+### Frontend Setup
+
+Open a second terminal:
 
 ```bash
-jupyter lab
+cd frontend
+npm install
 ```
 
-### 5. Run the tests
+Create a local `.env` file in the `frontend` directory with:
+
+```env
+VITE_API_BASE_URL=http://127.0.0.1:8003
+```
+
+Start the frontend:
 
 ```bash
-pytest -q
+npm run dev -- --port 5174
 ```
 
----
+Open the application at:
 
-## 🔁 How to Push Code
+`http://localhost:5174`
 
-> Full walkthrough: **[Git & Collaboration Handbook](../vtu-hc-guide-git-and-collaboration)** — collaboration
-> workflow, branches, pull requests, reviews and conflict resolution.
+Keep both the backend and frontend running while using the application.
 
-### Configure Git (first time only)
+## 6. Example Use Cases
 
-```bash
-git config --global user.name  "Your Name"
-git config --global user.email "you@example.com"
-```
+- Reviewing RSA-based key establishment configurations.
+- Assessing supported digital-signature configurations.
+- Identifying cryptographic assets that may require post-quantum migration planning.
+- Importing a CSV inventory to consolidate cryptographic assessment results.
+- Exploring post-quantum alternatives such as ML-KEM and ML-DSA where applicable.
 
-### Everyday workflow
+Recommendations depend on the algorithm, use case, and implementation context. They should be reviewed by qualified security professionals before production adoption.
 
-```bash
-# 1. Get the latest changes
-git checkout main
-git pull origin main
+## 7. Limitations
 
-# 2. Create a branch for your work
-git checkout -b feature/my-task
+QuantumSafe-Checker is a hackathon prototype intended to support cryptographic awareness and migration planning.
 
-# 3. Commit your work
-git add .
-git commit -m "feat: add variational circuit for the search problem"
+- Assessments depend on the implemented rules and available algorithm metadata.
+- Results are qualitative prototype assessments, not a comprehensive security audit.
+- Inventory results depend on the accuracy and completeness of the supplied data.
+- Migration recommendations require review against application requirements, protocol support, interoperability, and applicable standards.
+- The current implementation uses classical software-based rules and does not execute quantum circuits or demonstrate quantum speedup.
 
-# 4. Push the branch
-git push -u origin feature/my-task
+The tool should not be treated as a replacement for a professional cryptographic audit or production security validation.
 
-# 5. Open a Pull Request on GitHub and request a review
-#    https://github.com/vtu-qiskit-fall-fest-2026/vtu-hc-wavefunction-warriors/compare/main...feature/my-task
+## 8. Future Scope
 
-# 6. After approval, merge into main
-git checkout main
-git pull origin main
-git branch -d feature/my-task
-```
+- Expand algorithm and protocol coverage.
+- Improve risk scoring and asset prioritization.
+- Enhance cryptographic discovery and inventory integration.
+- Add richer migration planning and progress tracking.
+- Improve report generation and standards-reference mapping.
+- Integrate with enterprise security and asset-management workflows.
 
-### Commit message convention
+## 9. Demo and Resources
 
-| Prefix | Meaning |
-| :--- | :--- |
-| `feat:` | New feature |
-| `fix:` | Bug fix |
-| `docs:` | Documentation only |
-| `test:` | Adding or fixing tests |
-| `refactor:` | Code restructure, no behaviour change |
-| `chore:` | Build/config/dependency changes |
+- **GitHub Repository:** https://github.com/vtu-qiskit-fall-fest-2026/vtu-hc-wavefunction-warriors
+- **Demo Video:** [Add the YouTube demo URL here]
+- **Presentation:** [Add the presentation link if required]
 
-### Useful commands
+## 10. Acknowledgement
 
-```bash
-git status              # what changed
-git log --oneline -10   # recent commits
-git diff                # review changes before committing
-git stash               # shelve changes temporarily
-git pull --rebase       # update your branch on top of main
-```
+Developed by **Wavefunction Warriors** for **Qiskit Fall Fest 2026**, under the Quantum Cryptography and Security track.
 
-### Collaborating on the same repo
-
-- **Never push directly to `main`** — open a Pull Request.
-- **Pull before you push** to avoid rejected commits.
-- **Commit often** with clear messages.
-- **Resolve conflicts** locally: `git pull --rebase`, fix the files, then `git add` + `git rebase --continue`.
-- **Ask for a review** before merging — a second pair of eyes catches bugs fast.
-
----
-
-## ✅ Submission Checklist
-
-- [ ] Repository created and **public**
-- [ ] All team members added as **collaborators** and invitations accepted
-- [ ] `README.md` updated with project details, problem statement and solution
-- [ ] Team members listed under [Team Members](#-team-members-github-ids)
-- [ ] `requirements.txt` committed and project runs from a clean clone
-- [ ] Code pushed to `main` and the latest `main` builds successfully
-- [ ] Notebooks committed with **cleared outputs** (or use `nbstrip`)
-- [ ] `README` includes a demo screenshot / video link
-- [ ] Short project summary submitted on the hackathon portal
-
----
-
-## 📚 Resources
-
-| Resource | Link |
-| :--- | :--- |
-| 🔁 Git & collaboration handbook | [Git & Collaboration Handbook](../vtu-hc-guide-git-and-collaboration) |
-| ❓ Problem statements, solutions & terms | [Problem Statements, Solutions & Terms](../vtu-hc-guide-problem-and-solution) |
-| 📄 README writing guide | [README Guide & Template](../vtu-hc-guide-readme-template) |
-| ⚛️ Qiskit documentation | https://docs.quantum.ibm.com/ |
-| ⚛️ Qiskit Runtime & primitives | https://quantum.cloud.ibm.com/docs/ |
-| 🧪 Qiskit Aer simulator | https://docs.quantum.ibm.com/guides/simulator |
-| 💻 IBM Quantum Platform | https://quantum.cloud.ibm.com/ |
-| 🎓 Qiskit textbook | https://qiskit.qotlabs.org/learning/ |
-| 📋 GitHub Docs | https://docs.github.com/ |
-
----
-
-## 📄 License
-
-Released under the [MIT License](LICENSE). See `LICENSE` for details.
-
----
-
-<div align="center">
-
-**Wavefunction Warriors** · Team ID `VTU-QFF-HC-0136` · Tier `Online`
-· Built with ⚛️ Qiskit for the VTU-QFF Hackathon
-
-[⬆ Back to Top](#wavefunction-warriors)
-
-</div>
+Our goal is to make quantum-related cryptographic risks easier to understand and help organizations begin planning their transition toward post-quantum cryptography.
